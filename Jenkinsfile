@@ -3,7 +3,7 @@ pipeline {
     
     stages {
 
-stage('Nettoyage et compilation Maven') {
+        stage('Nettoyage et compilation Maven') {
             steps {
                 // Cette étape va nettoyer et compiler le projet avec Maven
                 sh 'mvn clean compile'
@@ -11,4 +11,4 @@ stage('Nettoyage et compilation Maven') {
         }
       }
     }
-}
+
