@@ -18,7 +18,7 @@ pipeline {
         stage('SonarQube analyse') {
             steps {
                 withSonarQubeEnv(installationName: 'SonarQubeTests') {
-                    sh 'mvn clean package sonar:sonar'
+                    sh 'mvn sonar:sonar -Dsonar.login=root'
                 }
             }
         }
