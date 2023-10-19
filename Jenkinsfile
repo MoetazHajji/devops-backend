@@ -15,6 +15,11 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube analyse') {
+            steps {
+                    sh 'mvn sonar:sonar -Dsonar.login=root'
+            }
+        }
     }
         post {
         success {
