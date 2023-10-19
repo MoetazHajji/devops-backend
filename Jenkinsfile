@@ -13,7 +13,7 @@ pipeline {
         stage('SonarQube analyse') {
             steps {
                 withSonarQubeEnv('SonarLint') {
-                    sh 'mvn sonar:sonar -Dsonar.login=VOTRE_MOT_DE_PASSE_SONAR'
+                    sh 'mvn sonar:sonar -Dsonar.login=root'
                 }
             }
         }
