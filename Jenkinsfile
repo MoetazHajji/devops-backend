@@ -18,7 +18,7 @@ pipeline {
         stage('SonarQube analyse') {
             steps {
                 withSonarQubeEnv(installationName: 'SonarQubeTests') {
-                    sh 'mvn sonar:sonar -Dsonar.login=root'
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar -Dsonar.login=root'
                 }
             }
         }
