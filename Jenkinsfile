@@ -1,22 +1,9 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout') {
+    stage('Nettoyage et compilation Maven') {
             steps {
-                echo 'Checkout'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                echo 'your_build_command_here'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'your_deploy_command_here'
+                sh 'mvn clean compile'
             }
         }
     }
