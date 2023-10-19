@@ -18,7 +18,7 @@ pipeline {
         stage('SonarQube analyse') {
             steps {
                 withSonarQubeEnv(installationName: 'SonarQubeTests') {
-                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar -Dsonar.login=admin .password=Taztaz**07$$'
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
                 }
             }
         }
