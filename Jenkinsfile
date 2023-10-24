@@ -10,23 +10,15 @@ pipeline {
             }
         }
 
-        // stage('SonarQube analyse') {
-        //     steps {
-        //         withSonarQubeEnv(installationName: 'sq1')
-        //             sh 'mvn sonar:sonar'
-                
-        //     }
-        // }
-
-        stage('SonarQube analysis') {
-      tools {
-        sonarQube 'SonarQube Scanner 2.8'
-      }
-     steps {
+        stage('SonarQube analyse') {
+            steps {
                 withSonarQubeEnv(installationName: 'sq1')
                     sh 'mvn sonar:sonar'
+                
+            }
         }
-      }
+
+    
     }
       }
 
