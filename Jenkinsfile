@@ -20,6 +20,14 @@ pipeline {
                 
             }
         }
+        stage('SonarQube analyse') {
+            steps {
+               timeout(time: 2, unit: 'MINUTES') {
+                   waitForQualityGate abortPipeline: true
+               }
+                
+            }
+        }
 
     
     }
