@@ -62,5 +62,6 @@ public class SpringBootWithUnitTestMockito {
         assertNotNull(subscription);
         log.info("get ==> " + subscription.toString());
         verify(subscriptionRepository).findById(Mockito.anyLong());
+
     }
 }
