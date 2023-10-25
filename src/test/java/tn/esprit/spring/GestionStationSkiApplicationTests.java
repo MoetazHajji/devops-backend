@@ -49,10 +49,5 @@ class GestionStationSkiApplicationTests {
 		Assertions.assertNotEquals(s.getPrice(), 200f);
 	}
 
-	@Test
-	@Order(2)
-	public Set<Subscription> getAllSubscrption(){
-		return subscriptionServices.getSubscriptionByType(TypeSubscription.MONTHLY);
-	}
 
 }
