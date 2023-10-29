@@ -24,7 +24,7 @@ pipeline {
         stage('Mockito test') {
             steps {
                script {
-                sh 'mvn sonar:sonar'
+                sh 'mvn test'
               }
                 
             }
