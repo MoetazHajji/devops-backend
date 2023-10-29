@@ -12,7 +12,7 @@ pipeline {
           stage('SonarQube analyse') {
             steps {
                script {
-            withSonarQubeEnv(installationName: 'sq1') {
+            withSonarQubeEnv(installationName: 'sq') {
                 sh 'mvn sonar:sonar'
             }
         }
