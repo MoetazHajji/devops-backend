@@ -9,6 +9,16 @@ pipeline {
                 sh 'mvn clean compile'
             }
         }
+          stage('SonarQube analyse') {
+            steps {
+               script {
+            withSonarQubeEnv(installationName: 'sq1') {
+                sh 'mvn sonar:sonar'
+            }
+        }
+                
+            }
+        }
 
        
       }
