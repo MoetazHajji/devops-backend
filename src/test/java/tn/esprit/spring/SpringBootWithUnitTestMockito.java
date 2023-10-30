@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.spring.entities.Subscription;
 import tn.esprit.spring.entities.TypeSubscription;
 import tn.esprit.spring.repositories.ISubscriptionRepository;
-import tn.esprit.spring.services.ISubscriptionServices;
 import tn.esprit.spring.services.SubscriptionServicesImpl;
 
 import java.time.LocalDate;
@@ -56,7 +55,7 @@ public class SpringBootWithUnitTestMockito {
     }
 
     @Test
-    public void retreiveMagasinTest() {
+    public void retreiveSubscriptionTest() {
         Mockito.when(subscriptionRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(s));
         Subscription subscription = subscriptionService.retrieveSubscriptionById((long) 1566);
         assertNotNull(subscription);
