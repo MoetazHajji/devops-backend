@@ -1,14 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Récupération du Code') {
+        stage('Get source Code') {
               steps {
                  script {
                   checkout([$class: 'GitSCM', branches: [[name: 'feat/moetazhajji_SAE6_G2']], userRemoteConfigs: [[url: 'https://github.com/MoetazHajji/sae6_g2_skistation-.git']]])
                         }
                     }
          }
-         stage('Compilation avec Maven') {
+         stage('Compile with Maven') {
             steps {
                 script {
                        sh 'mvn clean install' 
@@ -29,7 +29,7 @@ pipeline {
                 }
             }
         }
-        stage('Quality Gate') {
+        stage('Deployment with maven') {
             steps {
               sh 'mvn deploy'
             }
