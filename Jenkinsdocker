@@ -24,10 +24,10 @@ pipeline {
             steps {
                 script {
                     // Build Docker Compose images
-                    sh 'docker-compose -f docker-compose.yml build'
+                    sh 'docker-compose -f /var/lib/jenkins/workspace/sae6_g2_skistation-/docker-compose.yml build'
 
                     // Push images to Docker Hub
-                    sh 'docker-compose -f docker-compose.yml push'
+                    sh 'docker-compose -f /var/lib/jenkins/workspace/sae6_g2_skistation-/docker-compose.yml push'
                 }
             }
         }
