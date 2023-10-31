@@ -1,0 +1,25 @@
+pipeline {
+    environment {
+        registry = "mootazhajji/ski-station"
+        registryCredential = 'dockerhub_id'
+        dockerImage = ''
+    }
+    agent any
+    stages {
+        stage('Get source Code') {
+              steps {
+                 script {
+                  checkout([$class: 'GitSCM', branches: [[name: 'feat/moetazhajji_SAE6_G2']], userRemoteConfigs: [[url: 'https://github.com/MoetazHajji/sae6_g2_skistation-.git']]])
+                        }
+                    }
+         }
+    }
+        post {
+        success {
+            echo 'successfully.'
+        }
+        failure {
+            echo 'Failed'
+        }
+    }
+}
