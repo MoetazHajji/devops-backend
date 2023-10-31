@@ -9,17 +9,35 @@ pipeline {
         stage('Get source Code') {
               steps {
                  script {
-                  checkout([$class: 'GitSCM', branches: [[name: 'feat/moetazhajji_SAE6_G2']], userRemoteConfigs: [[url: 'https://github.com/MoetazHajji/sae6_g2_skistation-.git']]])
-                        }
-                    }
+                    checkout([$class: 'GitSCM', branches: [[name: 'feat/moetazhajji_SAE6_G2']], userRemoteConfigs: [[url: 'https://github.com/MoetazHajji/sae6_g2_skistation-.git']]])
+                 }
+              }
          }
+        stage('Compile with Maven') {
+            steps {
+                script {
+                    sh 'mvn clean install'
+                }
+            }
+        }
+        stage('Build and Push Docker Images') {
+            steps {
+                script {
+                    // Build Docker Compose images
+                    sh 'docker-compose -f docker-compose.yml build'
+
+                    // Push images to Docker Hub
+                    sh 'docker-compose -f docker-compose.yml push'
+                }
+            }
+        }
     }
-        post {
-        success {
-            echo 'successfully.'
-        }
-        failure {
-            echo 'Failed'
-        }
+    post {
+    success {
+        echo 'successfully.'
+    }
+    failure {
+        echo 'Failed'
+    }
     }
 }
