@@ -2,6 +2,7 @@ package tn.esprit.spring;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,18 +29,20 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 class GestionStationSkiApplicationTests {
 
-	@InjectMocks
-	private InstructorServicesImpl instructorServices;
+
 
 	@Mock
 	private IInstructorRepository instructorRepository;
 
 	@InjectMocks
+	private InstructorServicesImpl instructorServices;
+
+	@Mock
 	private ICourseServices courseServices;
 	@Mock
 	private ICourseRepository courseRepository;
 
-	@Before("")
+	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 	}
