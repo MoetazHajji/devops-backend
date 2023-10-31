@@ -20,14 +20,20 @@ pipeline {
                 }
             }
         }
-        stage('Build and Push Docker Images') {
+        stage('Build our Image') {
             steps {
                 script {
                     // Build Docker Compose images
-                    sh 'docker-compose -f ../sae6_g2_skistation-/docker-compose.yml build'
-
-                    // Push images to Docker Hub
-                    sh 'docker-compose -f ../sae6_g2_skistation-/docker-compose.yml push'
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('Deploy our image') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    }
                 }
             }
         }
