@@ -1,5 +1,20 @@
 version: "3.9"
 services:
+
+  mysql-container-devops:
+    image: "mysql"
+    container_name: mysql-container-devops
+    environment:
+      MYSQL_ROOT_PASSWORD: 97747369
+      MYSQL_DATABASE: stationSki
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    networks:
+      - devops-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+
   gestion-station-ski:
     build: ../sae6_g2_skistation-
     image: gestion-station-ski
@@ -7,26 +22,13 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container-devops:3306/stationSki?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_PASSWORD: 97747369
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
     ports:
       - "8089:8089"
     depends_on:
       - mysql-container-devops
-    networks:
-      - devops-network
-
-
-  mysql-container-devops:
-    image: "mysql:5.6"
-    container_name: mysql-container-devops
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: stationSki
-    ports:
-      - "3306:3306"
-    restart: unless-stopped
     networks:
       - devops-network
 
