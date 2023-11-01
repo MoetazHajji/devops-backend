@@ -1,13 +1,4 @@
 pipeline {
-     environment { 
-3
-        registry = "iheblafi" 
-4
-        registryCredential = 'dckr_pat_cBAyedVS-uC_5YdyTQguXLHCmYY' 
-5
-        dockerImage = '' 
-6
-    }
     agent any
     
     stages {
