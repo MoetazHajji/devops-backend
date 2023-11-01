@@ -5,8 +5,10 @@ services:
     image: "mysql"
     container_name: mysql-container-devops
     environment:
-      MYSQL_ROOT_PASSWORD: 97747369
       MYSQL_DATABASE: stationski
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
     restart: unless-stopped
@@ -15,14 +17,17 @@ services:
 #    volumes:
 #      - mysql-data:/var/lib/mysql
 
-  gestion-station-ski:
+  gestion-station-ski-container-devops:
     build: ../sae6_g2_skistation-
+#           context: . # ou bien Method 2
+#           dockerfile: Dockerfile   # ou bien Method 2
     image: gestion-station-ski
-    container_name: gestion-station-ski
+    container_name: gestion-station-ski-container-devops
+    restart: always
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container-devops:3306/stationski?createDatabaseIfNotExist=true
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: 97747369
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
     ports:
