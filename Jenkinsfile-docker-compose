@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    stages {
+        stage('Stage Maven') {
+            steps {
+                // Cette étape va nettoyer et compiler le projet avec Maven
+                sh 'mvn clean compile install -DskipTests'
+            }
+        }
+    }
+
+    post {
+             success {
+                 echo 'Successfully.'
+             }
+             failure {
+                 echo 'Failed'
+             }
+         }
+
+}
