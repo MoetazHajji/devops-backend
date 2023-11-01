@@ -46,7 +46,7 @@ pipeline {
             sh 'docker build -t iheblafi/gestion-station-ski:latest .'
             
              iheblafi : iheblafi
-             gestion-station-ski : gestion-station-ski
+             Gestion-station-ski : gestion-station-ski
              Tag : latest
         }
     }
