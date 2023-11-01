@@ -32,5 +32,8 @@ services:
     networks:
       - devops-network
 
+volumes:  # Define the volume at the end of your Compose file
+  mysql-data:
+
 networks:
   devops-network:
