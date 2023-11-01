@@ -5,7 +5,7 @@ services:
     image: "mysql"
     container_name: mysql-container-devops
     environment:
-      MYSQL_ROOT_PASSWORD: 97747369
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: stationSki
     ports:
       - "3306:3306"
@@ -22,7 +22,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container-devops:3306/stationSki?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: 97747369
+      SPRING_DATASOURCE_PASSWORD: root
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
     ports:
