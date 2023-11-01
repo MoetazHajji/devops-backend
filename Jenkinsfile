@@ -38,6 +38,26 @@ pipeline {
                 
             }
         }
+
+        stage('Nexust') {
+            steps {
+               script {
+                sh 'mvn deploy'
+              }
+                
+            }
+        }
+
+        stage('Nexust') {
+            steps {
+               script {
+                sh 'docker-compose up -d'
+              }
+                
+            }
+        }
+
+        
         // stage('Quality Gate') {
         //     steps {
         //        timeout(time: 5, unit: 'MINUTES') {
