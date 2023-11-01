@@ -44,10 +44,6 @@ pipeline {
         script {
             // Construire l'image Docker
             sh 'docker build -t iheblafi/gestion-station-ski:latest .'
-            
-             iheblafi : iheblafi
-             Gestion-station-ski : gestion-station-ski
-             Tag : latest
         }
     }
 }
