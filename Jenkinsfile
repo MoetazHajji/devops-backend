@@ -39,16 +39,8 @@ pipeline {
             }
         }
 
-        stage('Nexust') {
-            steps {
-               script {
-                sh 'mvn deploy'
-              }
-                
-            }
-        }
 
-        stage('Nexust') {
+        stage('Docker-compose') {
             steps {
                script {
                 sh 'docker-compose up -d'
