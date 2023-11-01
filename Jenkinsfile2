@@ -6,7 +6,7 @@ pipeline {
         stage('Login') {
             steps {
                 script {
-                    sh 'echo "mot pass" |  docker login --username iheblafi  --password-stdin'
+                    sh 'echo "123456789" |  docker login --username iheblafi  --password-stdin'
                 }
             }
         }
