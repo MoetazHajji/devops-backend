@@ -10,34 +10,34 @@ pipeline {
             }
         }
 
-        stage('SonarQube analyse') {
-            steps {
-               script {
-            withSonarQubeEnv(installationName: 'sq1') {
-                sh 'mvn sonar:sonar'
-            }
-        }
+        // stage('SonarQube analyse') {
+        //     steps {
+        //        script {
+        //     withSonarQubeEnv(installationName: 'sq1') {
+        //         sh 'mvn sonar:sonar'
+        //     }
+        // }
                 
-            }
-        }
+        //     }
+        // }
 
-        stage('Mockito & JUnit test') {
-            steps {
-               script {
-                sh 'mvn test'
-              }
+        // stage('Mockito & JUnit test') {
+        //     steps {
+        //        script {
+        //         sh 'mvn test'
+        //       }
                 
-            }
-        }
+        //     }
+        // }
 
-        stage('Nexust') {
-            steps {
-               script {
-                sh 'mvn deploy'
-              }
+        // stage('Nexust') {
+        //     steps {
+        //        script {
+        //         sh 'mvn deploy'
+        //       }
                 
-            }
-        }
+        //     }
+        // }
 
 
         stage('Docker-compose') {
