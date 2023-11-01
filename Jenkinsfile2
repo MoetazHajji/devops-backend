@@ -1,4 +1,10 @@
 pipeline {
+environment { 
+    registry = "iheblafi"
+    registryCredential = 'iheblafi' 
+    dockerImage = '' 
+
+    }
     agent any
     
     stages {
@@ -14,7 +20,9 @@ pipeline {
         stage('Push vers DockerHub') {
     steps {
         script {
+        docker.withRegistry( '', registryCredential ) {
             sh 'docker push iheblafi/gestion-station-ski:latest'
+            }
         }
     }
 }
