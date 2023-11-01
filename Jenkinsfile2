@@ -1,15 +1,18 @@
 pipeline {
-environment { 
-    registry = "iheblafi"
-    registryCredential = 'iheblafi' 
-    dockerImage = '' 
-
-    }
     agent any
     
     stages {
 
-        stage('Build et Push Docker Image') {
+        stage('Login') {
+            steps {
+                script {
+                    sh 'echo "mot pass" |  docker login --username iheblafi  --password-stdin'
+                }
+            }
+        }
+       
+
+        stage('Build Docker Image') {
     steps {
         script {
             // Construire l'image Docker
@@ -20,9 +23,7 @@ environment {
         stage('Push vers DockerHub') {
     steps {
         script {
-        docker.withRegistry( '', registryCredential ) {
             sh 'docker push iheblafi/gestion-station-ski:latest'
-            }
         }
     }
 }
