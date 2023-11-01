@@ -5,24 +5,24 @@ services:
     image: "mysql"
     container_name: mysql-container-devops
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: stationSki
+      MYSQL_ROOT_PASSWORD: 97747369
+      MYSQL_DATABASE: stationski
     ports:
       - "3306:3306"
     restart: unless-stopped
     networks:
       - devops-network
-    volumes:
-      - mysql-data:/var/lib/mysql
+#    volumes:
+#      - mysql-data:/var/lib/mysql
 
   gestion-station-ski:
     build: ../sae6_g2_skistation-
     image: gestion-station-ski
     container_name: gestion-station-ski
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container-devops:3306/stationSki?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container-devops:3306/stationski?createDatabaseIfNotExist=true
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_PASSWORD: 97747369
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
     ports:
@@ -32,8 +32,8 @@ services:
     networks:
       - devops-network
 
-volumes:  # Define the volume at the end of your Compose file
-  mysql-data:
+#volumes:  # Define the volume at the end of your Compose file
+#  mysql-data:
 
 networks:
   devops-network:
