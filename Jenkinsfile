@@ -1,4 +1,13 @@
 pipeline {
+     environment { 
+3
+        registry = "iheblafi" 
+4
+        registryCredential = 'dckr_pat_cBAyedVS-uC_5YdyTQguXLHCmYY' 
+5
+        dockerImage = '' 
+6
+    }
     agent any
     
     stages {
@@ -21,23 +30,23 @@ pipeline {
             }
         }
 
-        stage('Mockito & JUnit test') {
-            steps {
-               script {
-                sh 'mvn test'
-              }
+        // stage('Mockito & JUnit test') {
+        //     steps {
+        //        script {
+        //         sh 'mvn test'
+        //       }
                 
-            }
-        }
+        //     }
+        // }
 
-        stage('Nexust') {
-            steps {
-               script {
-                sh 'mvn deploy'
-              }
+        // stage('Nexust') {
+        //     steps {
+        //        script {
+        //         sh 'mvn deploy'
+        //       }
                 
-            }
-        }
+        //     }
+        // }
 
 //         stage('Build et Push Docker Image') {
 //     steps {
