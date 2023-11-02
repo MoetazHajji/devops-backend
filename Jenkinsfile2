@@ -10,7 +10,23 @@ pipeline {
                 }
             }
         }
-       
+
+  stage('Build Docker Image') {
+    steps {
+        script {
+            // Construire l'image Docker
+            sh 'docker build -t iheblafi/gestion-station-ski:latest .'
+        }
+    }
+}
+        stage('Push vers DockerHub') {
+    steps {
+        script {
+            sh 'docker push iheblafi/gestion-station-ski:latest'
+        }
+    }
+}
+
 
       
 
