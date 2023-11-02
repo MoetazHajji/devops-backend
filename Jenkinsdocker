@@ -13,11 +13,32 @@ pipeline {
                  }
               }
          }
-        stage('Docker-compose') {
+        stage('Compile with Maven') {
             steps {
-
                 script {
-                    sh 'docker-compose up -d'
+                    sh 'mvn clean install'
+                }
+            }
+        }
+        stage('Login') {
+                   steps {
+                       script {
+                          sh 'echo "123456789" |  docker login --username mootazhajji  --password-stdin'
+                       }
+                    }
+                }
+
+        stage('Build Docker Image') {
+            steps {
+               script {
+                   sh 'docker build -t mootazhajji/gestion-station-ski:latest .'
+                }
+            }
+        }
+        stage('Push vers DockerHub') {
+            steps {
+                script {
+                    sh 'docker push mootazhajji/gestion-station-ski:latest'
                 }
             }
         }
