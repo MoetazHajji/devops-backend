@@ -8,10 +8,17 @@ pipeline {
                         }
                     }
          }
-         stage('Compile with Maven') {
+        stage('Compile with Maven') {
             steps {
                 script {
                        sh 'mvn clean install' 
+                }
+            }
+        }
+        stage('Mockito test') {
+            steps {
+                script {
+                    sh 'mvn test'
                 }
             }
         }

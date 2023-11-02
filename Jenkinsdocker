@@ -13,36 +13,10 @@ pipeline {
                  }
               }
          }
-        stage('Compile with Maven') {
+        stage('Docker-compose') {
             steps {
                 script {
-                    sh 'mvn clean install'
-                }
-            }
-        }
-        stage('Build our Image') {
-            steps {
-                script {
-                    docker.image('docker:20.10').inside("--privileged") {
-                        // Build Docker Compose images
-                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                        // Push the image to the registry
-                        sh "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
-                        sh "docker push $registry:$BUILD_NUMBER"
-                        docker.withRegistry( '', registryCredential ) {
-                            dockerImage.push()
-                        }
-                    }
-
-                }
-            }
-        }
-        stage('Deploy our image') {
-            steps {
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
-                    }
+                    sh 'docker compose up -d'
                 }
             }
         }
