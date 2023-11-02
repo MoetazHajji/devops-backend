@@ -23,7 +23,7 @@ pipeline {
         stage('Login') {
                    steps {
                        script {
-                          sh 'echo "Taztaz**07$$" |  docker login --username moetazhajji  --password-stdin'
+                          sh 'echo "Taztaz**07$$" |  docker login --username MoetazHajji  --password-stdin'
                        }
                     }
                 }
@@ -31,14 +31,14 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                script {
-                   sh 'docker build -t moetazhajji/gestion-station-ski:latest .'
+                   sh 'docker build -t MoetazHajji/gestion-station-ski:latest .'
                 }
             }
         }
         stage('Push vers DockerHub') {
             steps {
                 script {
-                    sh 'docker push moetazhajji/gestion-station-ski:latest'
+                    sh 'docker push MoetazHajji/gestion-station-ski:latest'
                 }
             }
         }
