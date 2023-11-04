@@ -1,12 +1,7 @@
-version: "3.9"
+version: '3'
 services:
-
   gestion-station-ski:
-    container_name: gestion-station-ski
-    image: "gestion-station-ski"
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    image: nouhakouki/stationski
     ports:
       - "8089:8089"
     environment:
@@ -19,14 +14,9 @@ services:
       - mysql-container
     volumes:
       - gestion-station-ski-data:/gestion-station-ski-data
-    networks:
-      - spring-network
-
-
 
   mysql-container:
-    image: "mysql:5.6"
-    container_name: mysql-container
+    image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
@@ -35,16 +25,11 @@ services:
       - "3306:3306"
     restart: unless-stopped
     volumes:
-      - mysql_data:/opt/mysql/data
-      - mysql_extenstions:/opt/mysql/extensions
-      - mysql_logs:/mysql/logs
-    networks:
-      - spring-network
+      - mysql_data:/var/lib/mysql
 
 networks:
   spring-network:
+
 volumes:
   gestion-station-ski-data:
   mysql_data:
-  mysql_extenstions:
-  mysql_logs:
