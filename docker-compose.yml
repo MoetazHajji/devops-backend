@@ -1,33 +1,17 @@
 version: "3.9"
 services:
 
-  mysql-container-devops:
-    image: "mysql"
-    container_name: mysql-container-devops
-    environment:
-      MYSQL_DATABASE: stationski
-      MYSQL_ROOT_PASSWORD: root
-#      MYSQL_USER: user
-#      MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
-    restart: unless-stopped
-    networks:
-      - devops-network
-#    volumes:
-#      - mysql-data:/var/lib/mysql
-
-  gestion-station-ski-container-devops:
-    build: ../sae6_g2_skistation-
-#           context: . # ou bien Method 2
-#           dockerfile: Dockerfile   # ou bien Method 2
+  gestion-station-ski:
+    build: #../sae6_g2_skistation-     #  Method 1
+        context: .                  # ou bien Method 2
+        dockerfile: ./Dockerfile    # ou bien Method 2
     image: gestion-station-ski
-    container_name: gestion-station-ski-container-devops
+    container_name: gestion-station-ski
     restart: always
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container-devops:3306/stationski?createDatabaseIfNotExist=true
-#      SPRING_DATASOURCE_USERNAME: user
-#      SPRING_DATASOURCE_PASSWORD: password
+      #  SPRING_DATASOURCE_USERNAME: user
+      #  SPRING_DATASOURCE_PASSWORD: password
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
@@ -38,9 +22,38 @@ services:
       - mysql-container-devops
     networks:
       - devops-network
+    volumes:
+      - gestion-station-ski-data:/gestion-station-ski-data
 
-#volumes:  # Define the volume at the end of your Compose file
-#  mysql-data:
+  mysql-container-devops:
+    image: "mysql"
+    container_name: mysql-container-devops
+    environment:
+      MYSQL_DATABASE: stationski
+      MYSQL_ROOT_PASSWORD: root
+      # MYSQL_USER: user
+      # MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    networks:
+      - devops-network
+    volumes:
+      - mysql_data:/opt/mysql/data
+      - mysql_extenstions:/opt/mysql/extensions
+      - mysql_logs:/mysql/logs
+
 
 networks:
   devops-network:
+
+volumes:
+  gestion-station-ski-data:
+  mysql_data:
+  mysql_extenstions:
+  mysql_logs:
+
+
+# info
+# docker-compose up -d
+# docker-compose down ; docker rmi gestion-station-ski

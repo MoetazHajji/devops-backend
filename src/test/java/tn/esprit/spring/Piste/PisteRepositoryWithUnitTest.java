@@ -19,7 +19,7 @@ import static org.junit.Assert.assertNotNull;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest
 @Slf4j
-public class PisteRepositoryWithUnitTest {
+class PisteRepositoryWithUnitTest {
 
     @Autowired
     private IPisteRepository pisteRepository;
@@ -29,7 +29,7 @@ public class PisteRepositoryWithUnitTest {
 
     @Test
     @Order(0)
-    public void ajouterPisteTest() {
+    void ajouterPisteTest() {
         piste = pisteRepository.save(piste);
         log.info(piste.toString());
         Assertions.assertNotNull(piste.getNumPiste());
@@ -37,7 +37,7 @@ public class PisteRepositoryWithUnitTest {
 
     @Test
     @Order(1)
-    public void modifierPisteTest() {
+    void modifierPisteTest() {
         piste.setNamePiste("Piste-2");
         piste = pisteRepository.save(piste);
         log.info(piste.toString());
@@ -46,7 +46,7 @@ public class PisteRepositoryWithUnitTest {
 
     @Test
     @Order(2)
-    public void listerPistes() {
+    void listerPistes() {
         List<Piste> list = pisteRepository.findAll();
         log.info(list.size()+"");
         Assertions.assertTrue(list.size() > 0);
@@ -62,13 +62,13 @@ public class PisteRepositoryWithUnitTest {
 
     @Test
     @Order(4)
-    public void supprimerPiste() {
+    void supprimerPiste() {
         pisteRepository.delete(piste);
     }
 
     @Test
     @Order(5)
-    public void compter() {
+     void compter() {
         long taille = pisteRepository.count();
         Assertions.assertEquals(taille,pisteRepository.findAll().size());
     }

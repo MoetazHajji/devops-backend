@@ -24,7 +24,7 @@ public class PisteRestControllerTest {
     private IPisteServices pisteServices;
 
     @Test
-    public void testGetById() throws Exception {
+    void testGetById() throws Exception {
         Piste piste = new Piste();
         piste.setNamePiste("Test Piste");
         piste.setColor(Color.GREEN);
