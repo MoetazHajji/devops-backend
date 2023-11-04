@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   mysql-container-devops:
-    image: "mysql"
+    image: "mysql:5.6"  # Utilisez une version spécifique de MySQL, par exemple, 5.6
     container_name: mysql-container-devops
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -15,7 +15,9 @@ services:
       - mysql-data:/var/lib/mysql
 
   gestion-station-ski:
-    build: ../sae6_g2_skistation-
+    build:
+      context: ../sae6_g2_skistation-  # Assurez-vous que le chemin est correct
+      dockerfile: ./Dockerfile  # Assurez-vous que le nom du fichier Dockerfile est correct
     image: gestion-station-ski
     container_name: gestion-station-ski
     environment:
