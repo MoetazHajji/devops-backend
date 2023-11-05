@@ -36,7 +36,7 @@ class PisteTestMockito {
     List<Piste> list= new ArrayList<Piste>() {
         {
             add(Piste.builder().numPiste(12L).namePiste("Piste-1").color(Color.RED).length(2).slope(100).build());
-            add(Piste.builder().numPiste(12L).namePiste("Piste-2").color(Color.RED).length(2).slope(100).build());
+            add(Piste.builder().numPiste(13L).namePiste("Piste-2").color(Color.RED).length(2).slope(100).build());
         }
     };
 
