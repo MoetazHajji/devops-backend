@@ -28,19 +28,19 @@ pipeline {
 
 
 
-                  stage('Mockito test') {
+                  stage('Mockito install') {
                       steps {
                          script {
                                  sh 'mvn install'
                                 }
                            }
                      }
-                     stage('Mockito test') {
-                                 steps {
-                                    script {
-                                            sh 'mvn sonar:sonar -Pcoverage'
-                                           }
-                                      }
+                     stage('sonar -Pcoverage') {
+                         steps {
+                                script {
+                                        sh 'mvn sonar:sonar -Pcoverage'
+                                       }
+                              }
                     }
 
 
