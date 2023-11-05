@@ -4,7 +4,8 @@ pipeline {
         stage('Nettoyage et compilation Maven') {
             steps {
                 // Cette étape va nettoyer et compiler le projet avec Maven
-                sh 'mvn clean compile'
+                //sh 'mvn clean compile'
+                sh 'mvn clean compile install'
             }
         }
         stage('SonarQube analyse') {
@@ -28,25 +29,20 @@ pipeline {
 
 
 
-                  stage('Mockito install') {
+        /* stage('Mockito install') {
                       steps {
                          script {
                                  sh 'mvn install'
                                 }
                            }
-                     }
-                     stage('sonar -Pcoverage') {
+         }
+         stage('sonar -Pcoverage') {
                          steps {
                                 script {
                                         sh 'mvn sonar:sonar -Pcoverage'
                                        }
-                              }
-                    }
-
-
-
-
-
+                     }
+       }*/
         // stage('Quality Gate') {
         //     steps {
         //        timeout(time: 5, unit: 'MINUTES') {
