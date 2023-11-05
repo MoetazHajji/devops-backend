@@ -9,9 +9,9 @@ pipeline {
                 sh 'mvn clean compile'
             }
         }
-         // stage('SonarQube analyse') {
-           // steps {
-             //  script {
+       //   stage('SonarQube analyse') {
+         //   steps {
+           //   script {
             //withSonarQubeEnv(installationName: 'sq') {
               //  sh 'mvn sonar:sonar'
             //}
@@ -22,17 +22,34 @@ pipeline {
            stage('Compile with Maven') {
             steps {
                 script {
-                       sh 'mvn clean'
+                       sh 'mvn clean install'
                 }
             }
         }
-        stage('Mockito test') {
+      //  stage('Mockito test') {
+        //    steps {
+          //      script {
+            //        sh 'mvn test'
+              //  }
+            //}
+
+
+      //}
+         stage('Build Docker Image') {
             steps {
+                echo 'Construction de l\'image Docker'
                 script {
-                    sh 'mvn test'
+                    sh 'docker build -t siwaratiya/gestion-station-ski:latest .'
                 }
             }
+        }
 
+        stage('Push vers DockerHub') {
+       steps {
+          script {
+              sh 'docker push siwaratiya/gestion-station-ski:lates'
+        }
+    }
+}
 
-      }
     }}
