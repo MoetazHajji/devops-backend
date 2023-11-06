@@ -24,7 +24,7 @@ pipeline {
         // stage('Mockito & JUnit test') {
         //     steps {
         //        script {
-        //         sh 'mvn test'
+        //         sh 'mvn test -DskipTests=true'
         //       }
                 
         //     }
@@ -33,7 +33,7 @@ pipeline {
         // stage('Nexust') {
         //     steps {
         //        script {
-        //         sh 'mvn deploy'
+        //         sh 'mvn deploy -DskipTests=true'
         //       }
                 
         //     }
