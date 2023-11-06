@@ -11,6 +11,13 @@ pipeline {
                   }
                }
            }
+            stage('build') {
+                         steps {
+                              script {
+                                   sh 'docker build -t gestion-station-ski .'
+                             }
+                          }
+                      }
          stage('Docker Compose') {
               steps {
                    script {
