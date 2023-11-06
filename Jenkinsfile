@@ -3,22 +3,22 @@ pipeline {
     
     stages {
 
-        stage('Nettoyage et compilation Maven') {
-            steps {
+      //  stage('Nettoyage et compilation Maven') {
+        //    steps {
                 // Cette étape va nettoyer et compiler le projet avec Maven
-                sh 'mvn clean compile'
-            }
-        }
-       //   stage('SonarQube analyse') {
-         //   steps {
-           //   script {
-            //withSonarQubeEnv(installationName: 'sq') {
-              //  sh 'mvn sonar:sonar'
+          //      sh 'mvn clean compile'
             //}
         //}
+          stage('SonarQube analyse') {
+            steps {
+              script {
+            withSonarQubeEnv(installationName: 'sq') {
+                sh 'mvn sonar:sonar'
+            }
+        }
 
-          //  }
-        //}
+            }
+        }
            stage('Compile with Maven') {
             steps {
                 script {
@@ -26,15 +26,15 @@ pipeline {
                 }
             }
         }
-      //  stage('Mockito test') {
-        //    steps {
-          //      script {
-            //        sh 'mvn test'
-              //  }
-            //}
+        stage('Mockito test') {
+            steps {
+                script {
+                    sh 'mvn test'
+                }
+            }
 
 
-      //}
+      }
          stage('Build Docker Image') {
             steps {
                 echo 'Construction de l\'image Docker'
@@ -44,12 +44,12 @@ pipeline {
             }
         }
 
-        stage('Push vers DockerHub') {
-       steps {
-          script {
-              sh 'docker push siwaratiya/gestion-station-ski:lates'
-        }
-    }
-}
+      //  stage('Push vers DockerHub') {
+     //   steps {
+      //     script {
+       //        sh 'docker push siwaratiya/gestion-station-ski:lates'
+       //  }
+   //  }
+// }
 
     }}
