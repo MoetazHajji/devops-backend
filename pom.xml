@@ -65,13 +65,17 @@
             <scope>test</scope>
         </dependency>
 
-
-
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 
 
     </dependencies>
-
-
 
 	<!-- Start Deploy to Nexus -->
 	<distributionManagement>
@@ -82,10 +86,6 @@
 		</repository>
 	</distributionManagement>
 	<!-- End Deploy to Nexus -->
-
-
-
-
 	<build>
 		<plugins>
 			<plugin>
@@ -100,8 +100,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-
-
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -126,8 +124,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
 			<!--   mvn clean install -DskipTests  -->
 			<!--   or  -->
 			<!--plugin>
