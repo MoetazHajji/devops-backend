@@ -49,4 +49,10 @@ public class SubscriptionRestController {
         return subscriptionServices.retrieveSubscriptionsByDates(startDate, endDate);
     }
 
+    @Operation(description = "Delete Subscription ")
+    @DeleteMapping ("/delete/{numSub}")
+    public void removeSubscription(@PathVariable("numSub") Long numSubscription){
+        subscriptionServices.removeSubscription(numSubscription);
+    }
+
 }

@@ -1,0 +1,51 @@
+pipeline {
+    agent {
+        docker {
+            image 'your-jenkins-agent-image'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
+    environment {
+           def gitRepoURL = 'https://github.com/MoetazHajji/sae6_g2_skistation-.git'
+           def gitBranch  = 'feat/moetazhajji_SAE6_G2'
+    }
+    stages {
+        stage('Get source Code') {
+              steps {
+                 script {
+                  checkout([$class: 'GitSCM', branches: [[name: 'feat/moetazhajji_SAE6_G2']], userRemoteConfigs: [[url: 'https://github.com/MoetazHajji/sae6_g2_skistation-.git']]])
+                        }
+                    }
+        }
+        stage('Stage Maven') {
+            steps {
+                    script {
+                            sh 'cd ~/git/sae6_g2_skistation- && mvn clean install -DskipTests'
+                    }
+               }
+        }
+       stage('Stage Doker-Compose') {
+            steps {
+                    script {
+                           sh '''
+                           docker version
+                           docker info
+                           docker compose version
+                           curl --version
+                           jq --version
+                           '''
+                    }
+               }
+        }
+
+    }
+
+    post {
+        success {
+            echo 'Successfully.'
+        }
+        failure {
+            echo 'Failed'
+        }
+    }
+}
