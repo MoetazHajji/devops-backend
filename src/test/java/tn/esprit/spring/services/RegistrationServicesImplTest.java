@@ -14,11 +14,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import tn.esprit.spring.entities.Course;
 import tn.esprit.spring.entities.Registration;
 import tn.esprit.spring.entities.Skier;
+import tn.esprit.spring.entities.Support;
 import tn.esprit.spring.repositories.ICourseRepository;
 import tn.esprit.spring.repositories.IRegistrationRepository;
 import tn.esprit.spring.repositories.ISkierRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,6 +72,25 @@ class RegistrationServicesImplTest {
 
     }
 
+    @Test
+    void numWeeksCourseOfInstructorBySupport() {
 
+        Long numInstructor = 1L;
+        Support support = Support.SKI; // Replace with the appropriate Support enum value
+
+        // Create a list of week numbers as the expected result
+        List<Integer> expectedWeeks = Arrays.asList(1, 2, 3);
+
+        // Stub the registrationRepository to return the expectedWeeks list
+        Mockito.when(registrationRepository.numWeeksCourseOfInstructorBySupport(numInstructor, support))
+                .thenReturn(expectedWeeks);
+
+        // Call the service method to test
+        List<Integer> result = registrationServices.numWeeksCourseOfInstructorBySupport(numInstructor, support);
+
+        // Verify that the result matches the expectedWeeks list
+        assertEquals(expectedWeeks, result);
+
+    }
 
 }
