@@ -17,6 +17,13 @@ pipeline {
                         }
                     }
         }
+        stage('Login') {
+            steps {
+                script {
+                    sh 'docker login --username mootazhajji  --password Taztaz2007'
+                }
+            }
+        }
         stage('Stage Maven') {
             steps {
                     script {
