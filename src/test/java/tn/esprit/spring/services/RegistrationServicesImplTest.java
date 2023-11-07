@@ -19,10 +19,7 @@ import tn.esprit.spring.repositories.ICourseRepository;
 import tn.esprit.spring.repositories.IRegistrationRepository;
 import tn.esprit.spring.repositories.ISkierRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
@@ -76,21 +73,32 @@ class RegistrationServicesImplTest {
     void numWeeksCourseOfInstructorBySupport() {
 
         Long numInstructor = 1L;
-        Support support = Support.SKI; // Replace with the appropriate Support enum value
-
-        // Create a list of week numbers as the expected result
+        Support support = Support.SKI;
         List<Integer> expectedWeeks = Arrays.asList(1, 2, 3);
 
-        // Stub the registrationRepository to return the expectedWeeks list
         Mockito.when(registrationRepository.numWeeksCourseOfInstructorBySupport(numInstructor, support))
                 .thenReturn(expectedWeeks);
 
-        // Call the service method to test
         List<Integer> result = registrationServices.numWeeksCourseOfInstructorBySupport(numInstructor, support);
-
-        // Verify that the result matches the expectedWeeks list
         assertEquals(expectedWeeks, result);
+        log.info("get ==> " + result.toString());
 
     }
 
+    @Test
+    void numWeeksCourseOfInstructorBySupportWithNoResults() {
+
+        Long numInstructor = 1L;
+        Support support = Support.SNOWBOARD;
+        List<Integer> expectedWeeks = Collections.emptyList();
+
+        Mockito.when(registrationRepository.numWeeksCourseOfInstructorBySupport(numInstructor, support))
+                .thenReturn(expectedWeeks);
+
+        List<Integer> result = registrationServices.numWeeksCourseOfInstructorBySupport(numInstructor, support);
+        verify(registrationRepository).numWeeksCourseOfInstructorBySupport(numInstructor, support);
+        assertEquals(expectedWeeks, result);
+        log.info("get ==> " + result.toString());
+    }
 }
+
