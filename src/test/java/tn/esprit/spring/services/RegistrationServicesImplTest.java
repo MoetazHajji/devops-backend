@@ -70,6 +70,26 @@ class RegistrationServicesImplTest {
     }
 
     @Test
+    void assignRegistrationToCourse() {
+
+        Registration registration = new Registration();
+        registration.setNumRegistration(1L);
+        Course course = new Course();
+        course.setNumCourse(1L);
+
+        Mockito.when(registrationRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(registration));
+        Mockito.when(courseRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(course));
+        Mockito.when(registrationRepository.save(registration)).thenReturn(registration);
+
+        log.info("Avant ==> " + r.toString());
+        Registration reg = registrationServices.assignRegistrationToCourse(r.getNumRegistration(), c.getNumCourse());
+        assertNotNull(reg);
+        assertEquals(registration, reg);
+        log.info("Après ==> " + r.toString());
+
+    }
+
+    @Test
     void numWeeksCourseOfInstructorBySupport() {
 
         Long numInstructor = 1L;
