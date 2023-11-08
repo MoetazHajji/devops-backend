@@ -80,6 +80,7 @@
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
+			<version>1.8.7</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -119,11 +120,7 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-prometheus</artifactId>
 
-		</dependency>
 
 
 	</dependencies>
