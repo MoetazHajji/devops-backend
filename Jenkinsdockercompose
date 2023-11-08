@@ -5,18 +5,6 @@ pipeline {
            def gitBranch  = 'feat/moetazhajji_SAE6_G2'
     }
     stages {
-        stage('Clone git') {
-            steps {
-                script {
-                     sh """
-                        mkdir -p ~/git &&
-                        cd ~/git &&
-                        rm -rf sae6_g2_skistation- &&
-                        git clone -b ${gitBranch} ${gitRepoURL}
-                     """
-                }
-            }
-        }
         stage('Stage Maven') {
             steps {
                 script {
@@ -30,7 +18,7 @@ pipeline {
                     sh """
                     cd ~/git/sae6_g2_skistation- &&
                     docker compose down &&
-                    docker rmi -f gestion-station-ski &&
+                    docker rmi -f station-ski &&
                     docker compose up -d
                     """
                     }
