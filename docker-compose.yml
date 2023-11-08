@@ -15,7 +15,34 @@ services:
     depends_on:
       - db-mysql
     networks:
-      - spring-network
+      - skistation-network
+
+  station-ski-front:
+    image: station-ski-front
+    container_name: station-ski-front
+    build: ../sea6_G2_skistation-front
+    ports:
+      - "4200:80"
+    networks:
+      - skistation-network
+
+  sonarqube:
+    container_name: sonarqube
+    image: "sonarqube"
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+    networks:
+      - skistation-network
+
+  nexus :
+    container_name: nexus
+    image: "sonatype/nexus3"
+    ports:
+      - "8081:8081"
+    networks:
+      - skistation-network
+
 
   db-mysql:
     image: "mysql:5.6"
@@ -28,8 +55,8 @@ services:
       - "3306:3306"
     restart: unless-stopped
     networks:
-      - spring-network
+      - skistation-network
 
 
 networks:
-  spring-network:
+  skistation-network:
