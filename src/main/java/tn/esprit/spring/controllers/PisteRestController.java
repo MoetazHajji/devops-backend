@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/piste")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class PisteRestController {
 
     private final IPisteServices pisteServices;
@@ -39,6 +40,10 @@ public class PisteRestController {
     public void deleteById(@PathVariable("id-piste") Long numPiste){
         pisteServices.removePiste(numPiste);
     }
-    
 
+    @Operation(description = "Update Piste by Id")
+    @PutMapping("/update/{id-piste}")
+    public void update(@PathVariable("id-piste") Long numPiste,@RequestBody  Piste piste){
+        pisteServices.updatePiste( numPiste,  piste);
+    }
 }
