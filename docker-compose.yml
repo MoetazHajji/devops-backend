@@ -26,6 +26,22 @@ services:
     networks:
       - skistation-network
 
+  prometheus:
+    container_name: prometheus
+    image: "prom/prometheus"
+    ports:
+      - "9090:9090"
+    networks:
+      - skistation-network
+
+  grafana:
+    container_name: grafana
+    image: "grafana/grafana"
+    ports:
+      - "3000:3000"
+    networks:
+      - skistation-network
+
   sonarqube:
     container_name: sonarqube
     image: "sonarqube"
