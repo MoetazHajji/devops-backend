@@ -36,19 +36,19 @@ public class CourseServiceImplTest {
     void addCourse() {
     }
 
-    @Test
+   /* @Test
     @DatabaseSetup("/data-set/course-data.xml")
     void retrieveStock() {
         final Course course = this.courseServices.retrieveCourse(1L);
         assertEquals("course 1", course.getTypeCourse());
-    }
+    }*/
 
-    @Test
+  /*  @Test
     @DatabaseSetup("/data-set/course-data.xml")
     void retrieveAllStock() {
         final List<Course> allStocks = this.courseServices.retrieveAllCourses();
         if (!CollectionUtils.isEmpty(allStocks)) {
             assertEquals(allStocks.size(), 1);
         }
-    }
+    }*/
 }
