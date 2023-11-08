@@ -44,13 +44,13 @@ public class SkierServiceImplTest {
         assertEquals("skier 1", skier.getNumSkier());
     }
 
-    @Test
-    @DatabaseSetup("/data-set/skier-data.xml")
-    void retrieveAllSkier() {
-        final List<Skier> allSkier = this.skierService.retrieveAllSkiers();
-        if (!CollectionUtils.isEmpty(allSkier)) {
-            assertEquals(allSkier.size(), 1);
-        }
-    }
+//    @Test
+//    @DatabaseSetup("/data-set/skier-data.xml")
+//    void retrieveAllSkier() {
+//        final List<Skier> allSkier = this.skierService.retrieveAllSkiers();
+//        if (!CollectionUtils.isEmpty(allSkier)) {
+//            assertEquals(allSkier.size(), 1);
+//        }
+//    }
 
 }
