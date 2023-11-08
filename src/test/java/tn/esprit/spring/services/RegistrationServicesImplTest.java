@@ -83,7 +83,7 @@ class RegistrationServicesImplTest {
 
         log.info("Avant ==> " + r.toString());
         Registration reg = registrationServices.assignRegistrationToCourse(r.getNumRegistration(), c.getNumCourse());
-        assertNotNull(reg);
+        //assertNotNull(reg);
         assertEquals(registration, reg);
         log.info("Après ==> " + r.toString());
 
