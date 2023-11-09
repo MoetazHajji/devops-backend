@@ -2,7 +2,7 @@ version: "3.9"
 services:
 
   gestion-station-ski:
-    container_name: gestion-station-ski
+    container_name: 5SAE6-G2-gestion-station-ski
     image: "gestion-station-ski"
     build:
       context: .
