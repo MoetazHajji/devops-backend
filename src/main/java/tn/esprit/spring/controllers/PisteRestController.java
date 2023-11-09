@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/piste")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://192.168.33.10:4200", "http://gestion-station-ski:4200"})
 public class PisteRestController {
 
     private final IPisteServices pisteServices;

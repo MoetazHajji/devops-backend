@@ -4,7 +4,9 @@ services:
   station-ski-front:
     image: station-ski-front
     container_name: station-ski-front
-    build: ../sea6_G2_skistation-front
+    build: #../sea6_G2_skistation-front
+      context: ./sea6_G2_skistation-front
+      dockerfile: ./Dockerfile
     ports:
       - "4200:80"
     networks:
