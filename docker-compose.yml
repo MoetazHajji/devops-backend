@@ -3,6 +3,7 @@ services:
   station-ski:
     image: station-ski
     container_name: station-ski
+    restart: always
     ports:
       - "8089:8089"
     build: ../sae6_g2_skistation-
