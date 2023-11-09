@@ -15,10 +15,10 @@ pipeline {
                  }
 
 
-          stage('Compile with Maven') {
+          stage('maven Build') {
                steps {
                           script {
-                                 sh 'mvn clean install'
+                                 sh 'mvn  install'
                                  }
                      }
 
@@ -26,7 +26,7 @@ pipeline {
             }
 
 
-            stage('Mockito test') {
+           stage('Test Mockito') {
                                  steps {
                                      script {
                                          sh 'mvn test'
@@ -51,10 +51,7 @@ pipeline {
                                        }
 
 
-      
-
-
-stage('Build Docker Image') {
+            stage('Build Docker Image') {
                      steps {
                          echo 'Construction de l\'image Docker'
                          script {
@@ -70,23 +67,21 @@ stage('Build Docker Image') {
                   }
               }
           }
-          stage('Docker Compose') {
-              steps {
-                   script {
+               stage('Docker Compose') {
+                  steps {
+                    script {
                         sh 'docker compose down'
                         sh 'docker compose up -d'
                   }
                }
-           }
+              }
 
-
-
-    }
-         post {
-   always {
-                emailext (
-                    subject:"Pipeline Status: ${BUILD_NUMBER}",
-                    body: '''<html>
+      }
+               post {
+                  always {
+                     emailext (
+                        subject:"Pipeline Status: ${BUILD_NUMBER}",
+                         body: '''<html>
                                        <body>
                                           <p> Build Status: ${BUILD_STATUS} </p>
                                           <p> Build Number: ${BUILD_NUMBER} </p>
