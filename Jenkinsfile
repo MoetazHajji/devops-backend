@@ -1,14 +1,7 @@
 pipeline {
     agent any
 
-        environment {
-            NEXUS_VERSION = "nexus3"
-            NEXUS_PROTOCOL = "http"
-            NEXUS_URL = "192.168.33.10:8081"
-            NEXUS_REPOSITORY = "maven-releases"
-            NEXUS_CREDENTIAL_ID = "nexus-credentials"
-            }
-    
+
     stages {
 
 
@@ -58,30 +51,7 @@ pipeline {
                                        }
 
 
-          /* stage("publish to nexus") {
-                                   steps {
-                                       script {
-                                           artifactPath = "target/gestion-station-ski-1.0.jar";
-                                                           nexusArtifactUploader(
-                                                                   nexusVersion: NEXUS_VERSION,
-                                                                   protocol: NEXUS_PROTOCOL,
-                                                                   nexusUrl: NEXUS_URL,
-                                                                   groupId: 'tn.esprit',
-                                                                   version: '1.0',
-                                                                   repository: NEXUS_REPOSITORY,
-                                                                   credentialsId: NEXUS_CREDENTIAL_ID,
-                                                                   artifacts: [
-                                                                           // Artifact generated such as .jar, .ear and .war files.
-                                                                           [artifactId: 'gestion-station-ski',
-                                                                            classifier: '',
-                                                                            file      : artifactPath,
-                                                                            type      : 'jar']
-                                                                   ]
-                                                           );
-
-                                                       }
-                                                   }
-                                               }*/
+      
 
 
 stage('Build Docker Image') {
@@ -108,40 +78,6 @@ stage('Build Docker Image') {
                   }
                }
            }
-
-
-
-       /*   stage('mail') {
-              steps {
-                   script {
-
-            always {
-                emailext (
-                    subject:"Pipeline Status: ${currentBuild.result}",
-                    body: '''<html>
-                                       <body>
-                                          <p> Build Status: ${currentBuild.result} </p>
-                                          <p> Build Number: ${currentBuild.number} </p>
-                                          <p>Check the: <a href="${env.BUILD_URL}">cosol output </a>.</p>
-                                       </body>
-
-                                   </html>''',
-                       to: 'siwar.atiya@esprit.tn',
-                       from: 'jenkins@example.com',
-                       replyTo:'jenkins@example.com',
-                       mimeType : 'text/html'
-                )
-
-            }
-
-                  }
-               }
-           }*/
-
-
-
-
-
 
 
 
